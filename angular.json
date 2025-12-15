@@ -58,10 +58,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "v21-demo:build:production"
+              "buildTarget": "V21-demo:build:production"
             },
             "development": {
-              "buildTarget": "v21-demo:build:development"
+              "buildTarget": "V21-demo:build:development"
             }
           },
           "defaultConfiguration": "development"
