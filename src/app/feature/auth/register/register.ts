@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { form, Field, required, email, validate, minLength } from '@angular/forms/signals';
 import { registerModel } from './data/register.type';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class Register {
   registerModel = registerModel;
   router = inject(Router);
+  authService = inject(AuthService);
 
   // form con i signal e le validazioni
   registerForm = form(this.registerModel, (validate) => {
@@ -29,10 +31,15 @@ export class Register {
   // onSubmit
   onSubmit(event: Event) {
     event.preventDefault();
-    const data = this.registerModel(); 
-    if (data) {
-      console.log('Register data:', data.email, data.username, data.password);
+    const newUser = this.registerModel(); 
+    if (newUser) {
+      this.authService.registerUser(newUser);
+      console.log('Register data:', newUser.email, newUser.username, newUser.password);
+      alert(`Registrazione completata per ${newUser.username}!`);
       this.router.navigate(['login']);
+    } else {
+      console.error('Form is invalid');
+      alert('Form is invalid. Please check the entered data.');
     }
   }
 }
