@@ -38,12 +38,25 @@ export class AuthService {
 
     if (foundUser) {
       this.currentUser.set(foundUser);
+      localStorage.setItem('currentUser', JSON.stringify(foundUser));
       console.log('Login successful for user:', foundUser.username);
       return true;
     }
     this.currentUser.set(null);
     console.error('Login failed: Invalid credentials');
     return false;
+  }
+
+  getLoginData(): registerData[] {
+    return this.getRegisteredUsers();
+  }
+
+
+  // logout, ritorno alla registrazione 
+  logout(): void {
+    this.currentUser.set(null);
+    localStorage.removeItem('currentUser');
+    console.log('User logged out.');
   }
 
 
