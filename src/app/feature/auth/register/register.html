@@ -1,3 +1,31 @@
+@if (registerAlertMessage()) {
+  <!-- Overlay -->
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-pink-900/40 backdrop-blur-sm"
+  >
+    <!-- Alert box -->
+    <div
+      class="w-full max-w-sm mx-4 p-6
+             bg-pink-100
+             border-4 border-pink-400
+             rounded-xl
+             shadow-2xl
+             text-pink-800
+             font-pixel
+             text-center
+             animate-scale-in"
+    >
+      <p class="text-4xl mb-3">💾</p>
+      <p class="font-bold text-xl mb-2 tracking-wider">
+        Hello!
+      </p>
+      <p class="text-sm leading-relaxed">
+        {{ registerAlertMessage() }}
+      </p>
+    </div>
+  </div>
+}
+
 <form
   (submit)="onSubmit($event)"
   class="w-full max-w-sm mx-auto mt-10 p-6 bg-pink-100 border-4 border-pink-300 rounded-xl shadow-lg space-y-4 font-pixel text-pink-800"
